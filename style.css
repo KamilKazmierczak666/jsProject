@@ -100,3 +100,13 @@ hr {
     height: 25vh;
     width: 33vh;
 }
+
+.deck {
+    width: 100px;
+    height: 125px;
+}
+
+.productName {
+    display: inline-flex;
+    font-weight: bold;
+}
