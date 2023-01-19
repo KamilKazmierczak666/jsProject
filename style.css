@@ -113,4 +113,28 @@ h5 {
 
 .descriptionText {
     font-size: small;
+    margin-bottom: 0;
+}
+
+.seperate {
+    margin-top: 4px;
+    margin-bottom: 0px;
+}
+
+.footer {
+    display: inline-flex;
+    box-sizing: border-box;
+}
+
+.btnContainer {
+    width: 40px
+}
+
+.standard {
+    min-width: 100%;
+}
+
+.smallCart {
+    width: 30px;
+    height: 30px;
 }
