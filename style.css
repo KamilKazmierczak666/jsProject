@@ -101,12 +101,26 @@ hr {
     width: 33vh;
 }
 
+.textBox {
+    display: flex;
+    justify-content: right;
+}
+
 .deck {
     width: 100px;
     height: 125px;
 }
 
+.productText {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+.fit {
+    padding-bottom: 8px;
+}
+
 .productName {
-    display: inline-flex;
     font-weight: bold;
 }
