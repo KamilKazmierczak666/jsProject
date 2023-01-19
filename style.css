@@ -89,10 +89,6 @@ hr {
     justify-content: space-evenly;
 }
 
-.product {
-    text-align: center;
-}
-
 .items {
     background-color: hsla(128, 0%, 84%, 0.7);
     border: 2px solid black;
@@ -101,26 +97,20 @@ hr {
     width: 33vh;
 }
 
-.textBox {
+.image {
     display: flex;
-    justify-content: right;
+    float: left;
 }
 
-.deck {
-    width: 100px;
-    height: 125px;
+.textBox {
+    display: inline-flex;
+    flex-flow: column;
+} 
+
+h5 {
+    line-height: 0;
 }
 
-.productText {
-    list-style: none;
-    padding: 0;
-    text-align: center;
-}
-
-.fit {
-    padding-bottom: 8px;
-}
-
-.productName {
-    font-weight: bold;
+.descriptionText {
+    font-size: small;
 }
