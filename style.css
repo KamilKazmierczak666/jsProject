@@ -127,7 +127,7 @@ h5 {
 }
 
 .btnContainer {
-    width: 40px
+    width: 25px
 }
 
 .standard {
@@ -137,4 +137,16 @@ h5 {
 .smallCart {
     width: 30px;
     height: 30px;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.vl {
+    align-self: stretch;
+    height: 40px;
 }
