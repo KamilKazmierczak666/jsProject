@@ -84,8 +84,9 @@ hr {
 }
 /* Shop items */
 
-.align {
+.products {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-evenly;
 }
 
@@ -147,6 +148,6 @@ h5 {
 }
 
 .vl {
-    align-self: stretch;
+    display: flex;
     height: 40px;
 }
