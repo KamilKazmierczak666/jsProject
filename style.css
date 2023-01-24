@@ -58,6 +58,7 @@ body {
     border: 3px solid black;
     width: 39%;
     height: 95vh;
+    overflow: auto;
 }
 
 /* Header */

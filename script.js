@@ -36,6 +36,8 @@ function renderProducts() {
 
 renderProducts()
 
+//zmiana ilosci
+
 const adding = document.querySelector(".add")
 const subtracting = document.querySelector(".subtract")
 const display = document.querySelector(".quantity")
@@ -52,5 +54,4 @@ subtracting.addEventListener("click", () => {
     display.innerText = a
 })
 
-
-
+// dodawanie do koszyka
