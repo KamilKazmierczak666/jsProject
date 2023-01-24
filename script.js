@@ -1,10 +1,3 @@
-
-
-
-
-
-
-
 //Renderowanie produktów
 
 const productsEl = document.querySelector(".products")
@@ -23,9 +16,9 @@ function renderProducts() {
                     </div>
                     <hr class="seperate">
                     <div class="footer">
-                        <p class="price">${product.price}</p>
+                        <p class="price">${product.price}zł</p>
                         <hr class="vl">
-                        <p class="quantity">  </p>
+                        <p class="quantity"> 0 </p>
                         <hr class="vl">
                         <div class="btnContainer">
                             <button class="standard add">+</button>
@@ -42,3 +35,23 @@ function renderProducts() {
 }
 
 renderProducts()
+
+
+const adding = document.querySelector(".add")
+const subtracting = document.querySelector(".subtract")
+const display = document.querySelector(".quantity")
+
+let a = 0
+
+adding.addEventListener("click", () => {
+    a++
+    display.innerText = a
+})
+
+subtracting.addEventListener("click", () => {
+    a--
+    a = (a === 0) ? "0" : a
+    display.innerText = a
+})
+
+

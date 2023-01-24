@@ -138,6 +138,8 @@ h5 {
 .smallCart {
     width: 30px;
     height: 30px;
+    margin-top: 10px;
+    margin-right: 10px;
 }
 
 .footer {
@@ -147,7 +149,25 @@ h5 {
     margin-right: 5px;
 }
 
-.vl {
-    display: flex;
-    height: 40px;
+
+/* Cart items */ 
+
+.cartItems {    
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.cartProducts {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    align-items: center;
+}
+
+.remove {
+    width: 55px;
+    height: 30px;
+}
+
+form {
+    width: 100%;
 }
