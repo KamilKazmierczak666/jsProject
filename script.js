@@ -50,8 +50,9 @@ adding.addEventListener("click", () => {
 
 subtracting.addEventListener("click", () => {
     a--
-    a = (a === 0) ? "0" : a
+    a = (a <= 0) ? "0" : "0"
     display.innerText = a
 })
+
 
 
