@@ -36,7 +36,6 @@ function renderProducts() {
 
 renderProducts()
 
-
 const adding = document.querySelector(".add")
 const subtracting = document.querySelector(".subtract")
 const display = document.querySelector(".quantity")
@@ -50,7 +49,6 @@ adding.addEventListener("click", () => {
 
 subtracting.addEventListener("click", () => {
     a--
-    a = (a <= 0) ? "0" : "0"
     display.innerText = a
 })
 
