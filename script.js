@@ -1,6 +1,8 @@
 //Renderowanie produktów
 
 const productsEl = document.querySelector(".products")
+const cartItemsEl = document.querySelector(".cartItems")
+const subTotalEl = document.querySelector('.subTotal')
 
 function renderProducts() {
     products.forEach( (product) =>
@@ -21,13 +23,13 @@ function renderProducts() {
                         <p class="quantity"> 0 </p>
                         <hr class="vl">
                         <div class="btnContainer">
-                            <button class="standard add">+</button>
-                            <button class="standard subtract">-</button>
+                            <button class="standard add" onclick='changeQuantity('plus')>+</button>
+                            <button class="standard subtract" onclick='changeQuantity('minus')>-</button>
                         </div>
                         <hr class="vl">
-                        <a href="#">
+                        <div class="buy" onclick="addToCart(${product.id})">
                         <img class="smallCart" src="./images/cart.png" alt="addToCart">
-                        </a>
+                        </div>
                     </div>
                 </div>
         `
@@ -35,23 +37,99 @@ function renderProducts() {
 }
 
 renderProducts()
+// dodawanie do koszyka
+let cart = []
+
+
+function addToCart(id) {
+        //sprawdzanie czy produkt jest juz w koszyku
+        if (cart.some((item) => item.id === id)) {
+            changeQuantity("plus", id)
+        } else {
+            const item = products.find((product) => product.id === id)
+
+            cart.push({
+                ...item,
+                quantity: 1,
+            })
+        }
+
+    updateCart()
+}
+
+//usuwanie z koszyka
+
+function removeFromCart(id) {
+    cart = cart.filter((item) => item.id !== id)
+
+    updateCart();
+}
+
+//odswiezanie koszyka
+
+function updateCart() {
+    renderCartItems()
+    renderTotal()
+}
+
+//kalkulowanie i renderowanie
+
+function renderTotal() {
+    let totalPrice = 0
+
+    cart.forEach((item) => {
+        totalPrice += item.price * item.quantity
+    })
+
+    subTotalEl.innerHTML = `Grand total : ${totalPrice.toFixed(2)}zł`
+}
+
+//renderowanie koszyka
+function renderCartItems() {
+        cartItemsEl.innerHTML = ""
+    cart.forEach((item) => {
+        cartItemsEl.innerHTML += `
+                <form>
+                    <fieldset>
+                    <legend class="topText">${item.manufacterer}</legend>
+
+                    <div class="cartProducts">
+                        <input type="radio" name="product" id="product_1" value="produkt1" />
+                        <label for="product_1">${item.name}</label>
+                        <p>${item.price}</p>
+                        <p class="quantity">${item.quantity}</p>
+                        <div class="btnContainer">
+                            <button class="standard add" onclick="changeQuantity('plus', ${item.id})">+</button>
+                            <button class="standard subtract" onclick="changeQuantity('minus', ${item.id})">-</button>
+                        </div>
+                        <img class="remove" src="./images/delete.png" alt="removeItem"  onclick="removeFromCart(${item.id})">
+                    </div>
+
+                    </fieldset>
+                </form>
+        `
+    })
+}
 
 //zmiana ilosci
 
-const adding = document.querySelector(".add")
-const subtracting = document.querySelector(".subtract")
-const display = document.querySelector(".quantity")
+function changeQuantity(action, id) {
+    cart = cart.map((item) => {
+        let quantity = item.quantity
 
-let a = 0
+        if(item.id === id){
+            if(action === "minus" && quantity > 1) {
+                quantity--
+            }else if(action === "plus") {
+                quantity++
+            }
+        }
 
-adding.addEventListener("click", () => {
-    a++
-    display.innerText = a
-})
+        return {
+            ...item,
+            quantity,
+        }
+    })
 
-subtracting.addEventListener("click", () => {
-    a--
-    display.innerText = a
-})
-
-// dodawanie do koszyka
+    updateCart()
+}
