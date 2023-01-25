@@ -20,11 +20,11 @@ function renderProducts() {
                     <div class="footer">
                         <p class="price">${product.price}zł</p>
                         <hr class="vl">
-                        <p class="quantity"> 0 </p>
+                        <p class="quantity" id=${product.id}> 0 </p>
                         <hr class="vl">
                         <div class="btnContainer">
-                            <button class="standard add" onclick='changeQuantity('plus')>+</button>
-                            <button class="standard subtract" onclick='changeQuantity('minus')>-</button>
+                            <button class="standard add" onclick='increment(${product.id})'>+</button>
+                            <button class="standard subtract" onclick='decrement(${product.id})'>-</button>
                         </div>
                         <hr class="vl">
                         <div class="buy" onclick="addToCart(${product.id})">
@@ -37,6 +37,45 @@ function renderProducts() {
 }
 
 renderProducts()
+
+//dodawanie ilosci
+let numOfProducts = []
+
+let increment = (id) => {
+    let search = numOfProducts.find((x) => x.id === id)
+
+    if(search === undefined) {
+        numOfProducts.push({
+            id: id,
+            item: 1,
+        })
+    } else {
+        search.item += 1
+    }
+
+    // console.log(numOfProducts);
+    updateShop(id)
+}
+
+let decrement = (id) => {
+    let search = numOfProducts.find((x) => x.id === id)
+
+    if(search.item === 0) return
+    else {
+        search.item -= 1
+    }
+
+    // console.log(numOfProducts);
+    updateShop(id)
+
+}
+
+let updateShop = (id) => {
+    let search = numOfProducts.find((x) => x.id === id)
+    console.log(search.item);
+    document.getElementById(id).innerHTML = search.item
+}
+
 // dodawanie do koszyka
 let cart = []
 
@@ -84,6 +123,29 @@ function renderTotal() {
     subTotalEl.innerHTML = `Grand total : ${totalPrice.toFixed(2)}zł`
 }
 
+//zmiana ilosci
+
+function changeQuantity(action, id) {
+    cart = cart.map((item) => {
+        let quantity = item.quantity
+
+        if(item.id === id){
+            if(action === "minus" && quantity > 1) {
+                quantity--
+            }else if(action === "plus") {
+                quantity++
+            }
+        }
+
+        return {
+            ...item,
+            quantity,
+        }
+    })
+
+    updateCart()
+}
+
 //renderowanie koszyka
 function renderCartItems() {
         cartItemsEl.innerHTML = ""
@@ -109,27 +171,4 @@ function renderCartItems() {
                 </form>
         `
     })
-}
-
-//zmiana ilosci
-
-function changeQuantity(action, id) {
-    cart = cart.map((item) => {
-        let quantity = item.quantity
-
-        if(item.id === id){
-            if(action === "minus" && quantity > 1) {
-                quantity--
-            }else if(action === "plus") {
-                quantity++
-            }
-        }
-
-        return {
-            ...item,
-            quantity,
-        }
-    })
-
-    updateCart()
 }
