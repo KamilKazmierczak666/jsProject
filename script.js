@@ -55,7 +55,9 @@ let increment = (id) => {
 
     updateShop(id)
 }
+//.........
 
+//.........
 let decrement = (id) => {
     let search = numOfProducts.find((x) => x.id === id)
 
@@ -69,14 +71,12 @@ let decrement = (id) => {
 
 let updateShop = (id) => {
     let search = numOfProducts.find((x) => x.id === id)
-    console.log(search.item);
     document.getElementById(id).innerHTML = search.item
 }
 
 
 // dodawanie do koszyka
 let cart = []
-
 
 function addToCart(id) {
         //sprawdzanie czy produkt jest juz w koszyku
@@ -91,10 +91,9 @@ function addToCart(id) {
             })
         }
     
+    console.log(cart);
     updateCart()
 }
-
-
 
 //usuwanie z koszyka
 
