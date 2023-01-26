@@ -27,7 +27,7 @@ function renderProducts() {
                             <button class="standard subtract" onclick='decrement(${product.id})'>-</button>
                         </div>
                         <hr class="vl">
-                        <div class="buy" onclick="addToCart(${product.id})">
+                        <div id="cartAmount" class="buy" onclick="addToCart(${product.id})">
                         <img class="smallCart" src="./images/cart.png" alt="addToCart">
                         </div>
                     </div>
@@ -53,7 +53,6 @@ let increment = (id) => {
         search.item += 1
     }
 
-    // console.log(numOfProducts);
     updateShop(id)
 }
 
@@ -65,9 +64,7 @@ let decrement = (id) => {
         search.item -= 1
     }
 
-    // console.log(numOfProducts);
     updateShop(id)
-
 }
 
 let updateShop = (id) => {
@@ -75,6 +72,7 @@ let updateShop = (id) => {
     console.log(search.item);
     document.getElementById(id).innerHTML = search.item
 }
+
 
 // dodawanie do koszyka
 let cart = []
@@ -92,9 +90,11 @@ function addToCart(id) {
                 quantity: 1,
             })
         }
-
+    
     updateCart()
 }
+
+
 
 //usuwanie z koszyka
 
@@ -123,7 +123,7 @@ function renderTotal() {
     subTotalEl.innerHTML = `Grand total : ${totalPrice.toFixed(2)}zł`
 }
 
-//zmiana ilosci
+//zmiana ilosci w koszyku
 
 function changeQuantity(action, id) {
     cart = cart.map((item) => {
