@@ -11,7 +11,7 @@ function renderProducts() {
                             <img class="image" src="https://picsum.photos/100" alt="${product.name}">
                             <div class="textBox">
                                 <h5 class="info">${product.name}</h5>
-                                <h5 class="info">${product.manufacterer}</h5>
+                                <h5 class="info" id="manufacterer">${product.manufacterer}</h5>
                             </div>
                             <div>
                                 <p class="descriptionText">${product.description}</p>
@@ -50,10 +50,10 @@ function moreLess (action, id) {
     let input = document.getElementById(id)
     let value = input.value
 
-    if (action === "minus" && value > 1) {
-        value--
-    } else if (action === "plus") {
+    if (action === "plus") {
         value++
+    } else if (action === "minus" && value > 1) {
+        value--
     }
 
     input.value = value
@@ -61,6 +61,7 @@ function moreLess (action, id) {
 
 // dodawanie do koszyka
 let cart = []
+let subCarts = []
 
 function addToCart(id) {
         let input = document.getElementById(id)
@@ -75,9 +76,22 @@ function addToCart(id) {
                 quantity: input.value,
             })
         }
+    
     input.value = 1
+
     updateCart()
 }
+
+//segregacja
+
+function createSubCarts() {
+    subCarts = []
+    const manufacterers = cart.map(product => `${product.manufacterer}`)
+    manufacterers.forEach((manufacterer) => {
+        subCarts.includes(manufacterer) ? null : subCarts.push(manufacterer)
+    })
+}
+
 
 //usuwanie z koszyka
 
@@ -131,11 +145,18 @@ function changeQuantity(action, id) {
 
 //renderowanie koszyka
 function renderCartItems() {
+        createSubCarts()
         cartItemsEl.innerHTML = ""
-    cart.forEach((item) => {
-        cartItemsEl.innerHTML += `
-                    <div class="ajustCart">
-                    <h3 class="topText">${item.manufacterer}</h3>
+        let cartItem = ""
+        subCarts.forEach((manufacterer) => {
+            cartItem += `
+            <div class="ajustCart">
+                <h3 class="topText">${manufacterer}</h3>
+            `
+        
+            cart.forEach((item) => {
+                cartItem += `
+                    
                 
                     <div class="cartProducts">
                         <ul class="cartList">
@@ -158,4 +179,8 @@ function renderCartItems() {
                 </div>
         `
     })
+
+    cartItemsEl.innerHTML = cartItem
+
+    })          
 }

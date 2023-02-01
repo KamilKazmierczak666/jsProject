@@ -105,8 +105,8 @@ hr {
     background-color: hsla(128, 0%, 84%, 0.7);
     border: 2px solid black;
     margin-bottom: 20px;
-    height: 190px;
-    width: 250px;
+    height: 25vh;
+    width: 33vh;
 }
 
 .image {
@@ -148,7 +148,7 @@ h5 {
 }
 
 .vl {
-    height: 46px;
+    height: 6vh;
     margin: 0
 }
 
@@ -198,4 +198,8 @@ h5 {
 .quantity {
     width:40px;
     height: 30px;
+}
+
+.subTotal {
+    margin-top: 0;
 }
