@@ -85,11 +85,17 @@ function addToCart(id) {
 //segregacja
 
 function createSubCarts() {
-    subCarts = []
-    const manufacterers = cart.map(product => `${product.manufacterer}`)
-    manufacterers.forEach((manufacterer) => {
-        subCarts.includes(manufacterer) ? null : subCarts.push(manufacterer)
-    })
+    subCarts = Object.entries(
+        cart.reduce((acc, product) => {
+            if(acc[product.manufacterer]) {
+                acc[product.manufacterer].push(product)
+            } else {
+                acc[product.manufacterer] = [product]
+            }
+    
+            return acc;
+        }, {})
+    );
 }
 
 
@@ -145,16 +151,16 @@ function changeQuantity(action, id) {
 
 //renderowanie koszyka
 function renderCartItems() {
-        createSubCarts()
         cartItemsEl.innerHTML = ""
+        createSubCarts()
         let cartItem = ""
-        subCarts.forEach((manufacterer) => {
+        subCarts.forEach((group) => {
             cartItem += `
             <div class="ajustCart">
-                <h3 class="topText">${manufacterer}</h3>
+                <h3 class="topText">${group[0]}</h3>
             `
         
-            cart.forEach((item) => {
+            group[1].forEach((item) => {
                 cartItem += `
                     
                 
