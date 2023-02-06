@@ -160,13 +160,13 @@ function changeQuantity(action, id) {
 
 // }
 
-function manufactererTotal() {
-    let manTotal = 0
+// function manufactererTotal() {
+//     let manTotal = 0
 
-    cart.forEach((group) => {
-        manTotal += item.price * item.quantity
-    })
-}
+//     cart.forEach((manufacterer) => {
+//         manTotal += manufacterer.price * manufacterer.quantity
+//     })
+// }
 //nie wiem :(
 
 
