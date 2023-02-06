@@ -154,10 +154,21 @@ function changeQuantity(action, id) {
 // function manufactererTotal(manTotal) {
 //     let manArray = cart.filter((x) => x.manufacterer===manTotal)
 //     let manQty = manArray.map((x) => x.manTotal).reduce((x, y) => x + y, 0)
-//     let totalPrice = document.getElementById("manTotal" + group[0])
+//     let totalPrice = document.getElementById("manTotal" + manufacterer)
 
-//     totalPrice.innerHTML = "total: "+manQty+"zł"
+//     totalPrice.innerHTML = `Total : ${manQty}`
+
 // }
+
+function manufactererTotal() {
+    let manTotal = 0
+
+    cart.forEach((group) => {
+        manTotal += item.price * item.quantity
+    })
+}
+//nie wiem :(
+
 
 //renderowanie koszyka
 function renderCartItems() {
@@ -167,7 +178,7 @@ function renderCartItems() {
         subCarts.forEach((group) => {
             cartItem += `
             <div class="ajustCart">
-                <h3 class="topText">${group[0]}<span id="manTotal${group[0]}"></span></h3>
+                <h3 class="topText">${group[0]}<span id="manTotal${manufacterer}"></span></h3>
             `
         
             group[1].forEach((item) => {
