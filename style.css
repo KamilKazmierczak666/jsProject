@@ -175,10 +175,17 @@ h5 {
 }
 
 .ajustCart {
-    background-color: rgba(23, 40, 145, 0.22);
+    background-color: rgb(23, 145, 145);
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.cartProducts {
+    background-color: rgb(23, 145, 145);
     margin-left: 20px;
     margin-right: 20px;
     padding-bottom: 10px;
+    padding-top: 10px;
 }
 
 .cartList, .remove {
